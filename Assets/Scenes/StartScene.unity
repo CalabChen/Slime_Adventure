@@ -271,7 +271,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0819, y: 0.0525, z: 0}
-  m_LocalScale: {x: 67.9622, y: 65.4205, z: 1}
+  m_LocalScale: {x: 68, y: 66, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1987931859}
@@ -1004,7 +1004,7 @@ GameObject:
   - component: {fileID: 1381754721}
   - component: {fileID: 1381754720}
   m_Layer: 5
-  m_Name: Author
+  m_Name: Developer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,7 +1073,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1381754721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1658812822}
+        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
+        m_MethodName: GotoDeveloperScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1381754721
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -23,6 +23,12 @@ public class StartScene : MonoBehaviour
         SceneManager.LoadScene("SettingScene", LoadSceneMode.Single);
     }
 
+    // 跳转到开发者页面
+    public void GotoDeveloperScene()
+    {
+        SceneManager.LoadScene("DeveloperScene", LoadSceneMode.Single);
+    }
+
     // 退出游戏
     public void Quit()
     {
