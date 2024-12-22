@@ -23,9 +23,4 @@ public class StagePickSceneControl : MonoBehaviour
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
 
-    // ÍË³öÓÎÏ·
-    public void Quit()
-    {
-        Application.Quit();
-    }
 }

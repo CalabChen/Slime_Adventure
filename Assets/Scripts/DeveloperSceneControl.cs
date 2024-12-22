@@ -18,7 +18,7 @@ public class DeveloperSceneControl : MonoBehaviour
     }
 
     // ·µ»ØÖ÷Ò³Ãæ
-    public void ReturnPreviousScene()
+    public void ReturnStartScene()
     {
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
