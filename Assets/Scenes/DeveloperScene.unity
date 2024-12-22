@@ -274,8 +274,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1558188349}
-        m_TargetAssemblyTypeName: DeveloperScene, Assembly-CSharp
-        m_MethodName: ReturnPreviousScene
+        m_TargetAssemblyTypeName: DeveloperSceneControl, Assembly-CSharp
+        m_MethodName: ReturnStartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

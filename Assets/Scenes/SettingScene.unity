@@ -586,8 +586,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 647696154}
-        m_TargetAssemblyTypeName: SettingScene, Assembly-CSharp
-        m_MethodName: ReturnPreviousScene
+        m_TargetAssemblyTypeName: SettingSceneControl, Assembly-CSharp
+        m_MethodName: ReturnStartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
