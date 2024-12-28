@@ -1,20 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 
 public class SettingSceneControl : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Slider musicSlider; // 音乐滑块
+    public Text musicNumber; // 音乐数值显示
+    public Slider lightSlider; // 亮度滑块
+    public Text lightNumber; // 亮度数值显示
+
+    private AudioSource audioSource; // 音频源组件
+    private Renderer[] renderers; // 渲染器数组，用于调整亮度
+    private Light[] lights; // 光源数组，用于调整光源强度
+
     void Start()
     {
-        
+        // 确保音频源是附加到这个对象上的，如果不是，则需要获取正确的 GameObject 上的 AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        // 如果音频源不是直接附加到当前对象上的，则需要找到或指定正确的 GameObject
+        if (audioSource == null)
+        {
+            audioSource = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
+        }
+
+        // 获取所有子对象的 Renderer 组件
+        renderers = GetComponentsInChildren<Renderer>();
+
+        // 获取场景中的所有光源
+        lights = FindObjectsOfType<Light>();
+
+        // 初始化滑块值
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 50f);
+        lightSlider.value = PlayerPrefs.GetFloat("Brightness", 50f);
+
+        // 更新数值显示
+        UpdateNumbers();
+
+        // 设置初始音量
+        if (audioSource != null)
+        {
+            audioSource.volume = musicSlider.value / 100f;
+        }
+
+        // 防止这个 GameObject 在场景切换时被销毁
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateNumbers()
     {
-        
+        musicNumber.text = musicSlider.value.ToString("0");
+        lightNumber.text = lightSlider.value.ToString("0");
+    }
+
+    public void OnMusicSliderValueChanged(float value)
+    {
+        if (audioSource != null) // 确保音频源存在
+        {
+            audioSource.volume = value / 100f; // 更新音频源音量
+        }
+        PlayerPrefs.SetFloat("MusicVolume", value); // 保存到玩家偏好
+        UpdateNumbers(); // 更新数值显示
+    }
+
+    public void OnLightSliderValueChanged(float value)
+    {
+        float brightness = value / 100f; // 将滑块值转换为0到1之间的浮点数
+
+        // 调整渲染器颜色
+        foreach (Renderer r in renderers)
+        {
+            if (r != null && r.material != null)
+            {
+                Color currentColor = r.material.color;
+                Color newColor = new Color(
+                    Mathf.Lerp(0, currentColor.r, brightness),
+                    Mathf.Lerp(0, currentColor.g, brightness),
+                    Mathf.Lerp(0, currentColor.b, brightness),
+                    currentColor.a // 保持透明度不变
+                );
+                r.material.color = newColor;
+            }
+        }
+
+        // 调整光源强度
+        foreach (Light light in lights)
+        {
+            if (light != null)
+            {
+                float originalIntensity = light.intensity;
+                light.intensity = Mathf.Lerp(0, originalIntensity, brightness);
+            }
+        }
+
+        PlayerPrefs.SetFloat("Brightness", value); // 保存到玩家偏好
+        UpdateNumbers(); // 更新数值显示
     }
 
     // 返回主页面
