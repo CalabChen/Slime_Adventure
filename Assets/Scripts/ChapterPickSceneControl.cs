@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StagePickSceneControl : MonoBehaviour
+public class ChapterPickSceneControl : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -23,4 +23,8 @@ public class StagePickSceneControl : MonoBehaviour
         SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
 
+    public void LoadChapter()
+    {
+
+    }
 }

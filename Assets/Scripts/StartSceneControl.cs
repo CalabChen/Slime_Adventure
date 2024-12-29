@@ -20,7 +20,7 @@ public class StartSceneControl : MonoBehaviour
     // 跳转到关卡选择界面
     public void GotoStagePickScene()
     {
-        SceneManager.LoadScene("StagePickScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("ChapterPickScene", LoadSceneMode.Single);
     }
 
     // 跳转到设置页面
