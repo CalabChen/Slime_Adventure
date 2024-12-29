@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class SettingSceneControl : MonoBehaviour
 {
     public Slider musicSlider; // 音乐滑块
@@ -12,21 +11,11 @@ public class SettingSceneControl : MonoBehaviour
     public Slider lightSlider; // 亮度滑块
     public Text lightNumber; // 亮度数值显示
 
-    private AudioSource audioSource; // 音频源组件
     private Renderer[] renderers; // 渲染器数组，用于调整亮度
     private Light[] lights; // 光源数组，用于调整光源强度
 
     void Start()
     {
-        // 确保音频源是附加到这个对象上的，如果不是，则需要获取正确的 GameObject 上的 AudioSource
-        audioSource = GetComponent<AudioSource>();
-
-        // 如果音频源不是直接附加到当前对象上的，则需要找到或指定正确的 GameObject
-        if (audioSource == null)
-        {
-            audioSource = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
-        }
-
         // 获取所有子对象的 Renderer 组件
         renderers = GetComponentsInChildren<Renderer>();
 
@@ -41,9 +30,9 @@ public class SettingSceneControl : MonoBehaviour
         UpdateNumbers();
 
         // 设置初始音量
-        if (audioSource != null)
+        if (BackgroundMusicManager.Instance != null)
         {
-            audioSource.volume = musicSlider.value / 100f;
+            BackgroundMusicManager.Instance.ChangeVolume(musicSlider.value / 100f);
         }
 
         // 防止这个 GameObject 在场景切换时被销毁
@@ -58,11 +47,11 @@ public class SettingSceneControl : MonoBehaviour
 
     public void OnMusicSliderValueChanged(float value)
     {
-        if (audioSource != null) // 确保音频源存在
+        if (BackgroundMusicManager.Instance != null) // 确保音频源存在
         {
-            audioSource.volume = value / 100f; // 更新音频源音量
+            BackgroundMusicManager.Instance.ChangeVolume(value / 100f); // 更新音频源音量
+            PlayerPrefs.SetFloat("MusicVolume", value); // 保存到玩家偏好
         }
-        PlayerPrefs.SetFloat("MusicVolume", value); // 保存到玩家偏好
         UpdateNumbers(); // 更新数值显示
     }
 
