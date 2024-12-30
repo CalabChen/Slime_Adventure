@@ -1,24 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimeController : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    public float moveSpeed = 5f;
+    public float playerMoveSpeed = 10f;
+    public Rigidbody2D playerRB;
+    public Collider2D playerColl;
+    public Animator playerAnim;
 
-    private void Update()
+    void Start()
     {
-        HandleMovement();
+        playerRB = GetComponent<Rigidbody2D>();
+        playerColl = GetComponent<Collider2D>();
+        playerAnim = GetComponent<Animator>();
     }
 
-    private void HandleMovement()
+    void Update()
     {
-        // 获取水平方向上的输入 (A = -1, D = 1)
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        PlayerMove();
+    }
 
-        // 计算新的位置
-        Vector3 newPosition = transform.position + new Vector3(moveInput * moveSpeed * Time.deltaTime, 0, 0);
+   void PlayerMove()
+    {
+        float horizontalNum = Input.GetAxis("Horizontal");
+        float faceNum = Input.GetAxisRaw("Horizontal");
+        playerRB.velocity = new Vector2(playerMoveSpeed * horizontalNum, playerRB.velocity.y);
+        playerAnim.SetFloat("move", Mathf.Abs(playerMoveSpeed * horizontalNum));
 
-        // 更新位置
-        transform.position = newPosition;
+        if (faceNum != 0)
+        {
+            transform.localScale = new Vector3(faceNum * 6, transform.localScale.y, transform.localScale.z);
+        }
     }
 }
