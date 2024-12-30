@@ -257,8 +257,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &366754976
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +360,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 927250752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> parent of ef5d7d9 (Merge branch 'main' of https://github.com/CalabChen/Slime_Adventure)
 --- !u!1 &484492993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,11 +1172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  smoothTime: 0.2
-  bgBounds: {fileID: 1329471710}
-  target: {fileID: 927250752}
-=======
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
@@ -1269,7 +1261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
->>>>>>> parent of ef5d7d9 (Merge branch 'main' of https://github.com/CalabChen/Slime_Adventure)
 --- !u!1 &1948623601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,13 +1273,9 @@ GameObject:
   - component: {fileID: 1948623604}
   - component: {fileID: 1948623603}
   - component: {fileID: 1948623605}
-<<<<<<< HEAD
-  m_Layer: 0
-=======
   - component: {fileID: 1948623607}
   - component: {fileID: 1948623606}
   m_Layer: 6
->>>>>>> parent of ef5d7d9 (Merge branch 'main' of https://github.com/CalabChen/Slime_Adventure)
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1602,17 +1589,11 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-<<<<<<< HEAD
-  m_UsedByComposite: 0
-=======
   m_UsedByComposite: 1
->>>>>>> parent of ef5d7d9 (Merge branch 'main' of https://github.com/CalabChen/Slime_Adventure)
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
-<<<<<<< HEAD
-=======
 --- !u!66 &1948623606
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -1697,7 +1678,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
->>>>>>> parent of ef5d7d9 (Merge branch 'main' of https://github.com/CalabChen/Slime_Adventure)
 --- !u!1 &1966599776
 GameObject:
   m_ObjectHideFlags: 0
