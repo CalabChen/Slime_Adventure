@@ -634,9 +634,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMoveSpeed: 10
   playerJumpSpeed: 0
+  dashingPower: 0
+  dashingTime: 0
+  dashingCoolDown: 0
+  horizontal: 0
   playerJumpCount: 0
   isGround: 0
   pressedJump: 0
+  canDash: 0
+  isDashing: 0
   foot: {fileID: 450825201}
   groundLayer:
     serializedVersion: 2
@@ -644,6 +650,7 @@ MonoBehaviour:
   playerRB: {fileID: 0}
   playerColl: {fileID: 927250758}
   playerAnim: {fileID: 0}
+  playerTr: {fileID: 0}
 --- !u!50 &927250755
 Rigidbody2D:
   serializedVersion: 4
@@ -812,7 +819,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1793016438}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: RestartForest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2630,8 +2637,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1793016436}
   - {fileID: 1703316493}
-  - {fileID: 34199838}
-  - {fileID: 927250752}
-  - {fileID: 1966599778}
   - {fileID: 1827495860}
   - {fileID: 1504088897}
+  - {fileID: 34199838}
+  - {fileID: 1966599778}
+  - {fileID: 927250752}

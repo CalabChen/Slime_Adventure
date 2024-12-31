@@ -46,9 +46,21 @@ public class PauseMenu : MonoBehaviour
         music.Play();
     }
 
-    public void Restart()
+    public void RestartTest()
+    {
+        SceneManager.LoadScene("TestScene");
+        Time.timeScale = 1;
+    }
+
+    public void RestartForest()
     {
         SceneManager.LoadScene("ForestScene");
+        Time.timeScale = 1;
+    }
+
+    public void ReturnStartScene()
+    {
+        SceneManager.LoadScene("StartScene");
         Time.timeScale = 1;
     }
 
