@@ -7,6 +7,10 @@ public class SlimeController : MonoBehaviour
     [Header("速度设置")]
     public float playerMoveSpeed; // 玩家移动速度
     public float playerJumpSpeed; // 玩家跳跃速度
+    public float dashingPower;
+    public float dashingTime;
+    public float dashingCoolDown;
+    public float horizontal;
 
     [Header("跳跃设置")]
     public int playerJumpCount;   // 玩家可跳跃次数
@@ -14,6 +18,9 @@ public class SlimeController : MonoBehaviour
     [Header("检测变量")]
     public bool isGround;        // 是否着地
     public bool pressedJump;     // 是否按下跳跃键
+    public bool canDash;
+    public bool isDashing;
+    
 
     [Header("组件")]
     public Transform foot;       // 用于检测地面的脚部位置
@@ -21,29 +28,51 @@ public class SlimeController : MonoBehaviour
     public Rigidbody2D playerRB; // 玩家刚体组件
     public Collider2D playerColl;// 玩家碰撞器组件
     public Animator playerAnim;  // 玩家动画控制器
+    [SerializeField] TrailRenderer playerTr;
+
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerColl = GetComponent<Collider2D>();
         playerAnim = GetComponent<Animator>();
-
         // 默认速度设置
         playerMoveSpeed = 5f;
         playerJumpSpeed = 15f;
+
+        dashingPower = 24f;
+        dashingTime = 0.4f;
+        dashingCoolDown = 0.5f;
+        canDash = true;
     }
 
     void Update()
     {
+        horizontal= Input.GetAxisRaw("Horizontal");
+        if (isDashing)
+        {
+            return;
+        }
+
         UpdateCheck(); // 更新按键检测
-        AnimSwitch();  // 切换动画状态
+        AnimSwitch();  // 切换动画状态        
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     private void FixedUpdate()
     {
+        if (isDashing)
+        {
+            return;
+        }
         FixedUpdateCheck(); // 固定更新检测
         PlayerMove();       // 玩家移动逻辑
         PlayerJump();       // 玩家跳跃逻辑
+        
     }
 
     void PlayerMove()
@@ -107,5 +136,22 @@ public class SlimeController : MonoBehaviour
     {
         // 根据角色是否跳跃切换动画状态
         playerAnim.SetBool("jump", !isGround && playerRB.velocity.y != 0);
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = playerRB.gravityScale;
+        playerRB.gravityScale = 0f;
+        float dashDirection = Mathf.Sign(transform.localScale.x);
+        playerRB.velocity = new Vector2(dashDirection * dashingPower, 0f);
+        playerTr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        playerTr.emitting = false;
+        playerRB.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCoolDown);
+        canDash = true;
     }
 }
