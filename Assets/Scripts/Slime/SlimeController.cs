@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SlimeController : MonoBehaviour
 {
@@ -28,10 +30,29 @@ public class SlimeController : MonoBehaviour
     public Rigidbody2D playerRB; // 玩家刚体组件
     public Collider2D playerColl;// 玩家碰撞器组件
     public Animator playerAnim;  // 玩家动画控制器
+    public CinemachineVirtualCamera vcam;
     public TrailRenderer playerTr;
     public AudioSource jumpSoundEffect;
     public AudioSource dashSoundEffect;
+    public AudioSource deathSoundEffect;
 
+    [Header("重生点")]
+    public Transform respawnPoint;
+
+    public static SlimeController Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this; // 在Awake时设置实例
+            //DontDestroyOnLoad(gameObject); // 防止玩家实例在加载新场景时被销毁
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject); // 确保只有一个玩家实例
+        }
+    }
 
     void Start()
     {
@@ -110,6 +131,7 @@ public class SlimeController : MonoBehaviour
         {
             // 当在地面上且按下跳跃键时执行跳跃
             pressedJump = false;
+            jumpSoundEffect.Play();
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerJumpSpeed);
             playerJumpCount--;
         }
@@ -117,6 +139,7 @@ public class SlimeController : MonoBehaviour
         {
             // 在空中进行额外跳跃（如果还有可用跳跃次数）
             pressedJump = false;
+            jumpSoundEffect.Play();
             playerRB.velocity = new Vector2(playerRB.velocity.x, playerJumpSpeed);
             playerJumpCount--;
         }
@@ -133,7 +156,6 @@ public class SlimeController : MonoBehaviour
         // 当按下跳跃键时设置跳跃标志
         if (Input.GetButtonDown("Jump"))
         {
-            jumpSoundEffect.Play();
             pressedJump = true;
         }
     }
@@ -159,5 +181,42 @@ public class SlimeController : MonoBehaviour
         isDashing = false;
         yield return new WaitForSeconds(dashingCoolDown);
         canDash = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            deathSoundEffect.Play();
+            Respawn();
+        }
+        if (collision.gameObject.CompareTag("DeathFall"))
+        {
+            deathSoundEffect.Play();
+            Respawn();
+        } 
+    }
+    private void Respawn()
+    {
+        playerAnim.SetTrigger("death");
+        // 延迟一段时间以确保重生动画播放完毕
+        StartCoroutine(DelayedRespawn());
+    }
+    private IEnumerator DelayedRespawn()
+    {
+        // 等待死亡动画完成
+        yield return new WaitForSeconds(playerAnim.GetCurrentAnimatorStateInfo(0).length);
+        transform.position = respawnPoint.position;
+        RestartLevel();
+        // 重置玩家状态
+        playerAnim.ResetTrigger("death");
+        // 重新设置Cinemachine摄像头的Follow和LookAt
+        vcam.LookAt = transform;
+        vcam.Follow = transform;
+    }
+
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

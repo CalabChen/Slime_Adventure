@@ -18,7 +18,10 @@ public class ItemCollector : MonoBehaviour
             collectSoundEffect.Play();
             Destroy(collision.gameObject);
             cherryCount++;
-            CherryText.text = "Cherries:" + cherryCount;
+            if (CherryText != null)
+            {
+                CherryText.text = "Cherries:" + cherryCount;
+            }
         }
     }
 }
