@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static AllControl;
 
 public class ChapterPickSceneControl : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class ChapterPickSceneControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CherriesTXT.text = GameManager.Instance.cherries + "/6";
+        CherriesTXT.text = PlayerPrefs.GetInt("MaxCherries", 0) + "/6";
     }
 
     // Update is called once per frame

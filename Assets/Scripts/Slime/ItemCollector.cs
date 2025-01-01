@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static AllControl;
 
 public class ItemCollector : MonoBehaviour
 {
@@ -23,8 +22,11 @@ public class ItemCollector : MonoBehaviour
             {
                 CherryText.text = "Cherries:" + cherryCount;
             }
-            if(GameManager.Instance.cherries < cherryCount)
-            GameManager.Instance.cherries = cherryCount;
+            int max_c = PlayerPrefs.GetInt("MaxCherries", 0);
+            if(max_c < cherryCount)
+            {
+                PlayerPrefs.SetInt("MaxCherries", cherryCount);
+            }
         }
     }
 }
