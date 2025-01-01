@@ -112,7 +112,7 @@ public class SlimeController : MonoBehaviour
 
         // 将移动值传递给动画控制器
         playerAnim.SetFloat("move", Mathf.Abs(playerMoveSpeed * horizontalInput));
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (faceDirection != 0)
         {spriteRenderer.flipX = (faceDirection < 0);
             // 根据移动方向翻转角色
