@@ -75,20 +75,20 @@ public class SlimeController : MonoBehaviour
 
     void Update()
     {
-            horizontal = Input.GetAxisRaw("Horizontal");
-            if (isDashing)
-            {
-                return;
-            }
+        horizontal = Input.GetAxisRaw("Horizontal");
+        if (isDashing)
+        {
+            return;
+        }
 
-            UpdateCheck(); // 更新按键检测
-            AnimSwitch();  // 切换动画状态        
+        UpdateCheck(); // 更新按键检测
+        AnimSwitch();  // 切换动画状态        
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
-                dashSoundEffect.Play();
-                StartCoroutine(Dash());
-            }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            dashSoundEffect.Play();
+            StartCoroutine(Dash());
+        }
     }
     private void FixedUpdate()
     {
@@ -99,7 +99,7 @@ public class SlimeController : MonoBehaviour
         FixedUpdateCheck(); // 固定更新检测
         PlayerMove();       // 玩家移动逻辑
         PlayerJump();       // 玩家跳跃逻辑
-        
+
     }
 
     void PlayerMove()
@@ -114,7 +114,7 @@ public class SlimeController : MonoBehaviour
         playerAnim.SetFloat("move", Mathf.Abs(playerMoveSpeed * horizontalInput));
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (faceDirection != 0)
-        {spriteRenderer.flipX = (faceDirection < 0);
+        { spriteRenderer.flipX = (faceDirection < 0);
             // 根据移动方向翻转角色
             // transform.localScale = new Vector3(faceDirection * 6f, transform.localScale.y, transform.localScale.z);
         }
@@ -186,15 +186,15 @@ public class SlimeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("DeathFall"))
-        {
-            deathSoundEffect.Play();
+        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("DeathFall") || collision.gameObject.CompareTag("Bullet"))
+        {   
             Die();
         }
     }
 
-    private void Die()
+    public void Die()
     {
+        deathSoundEffect.Play();
         playerAnim.SetTrigger("death");
         playerRB.bodyType = RigidbodyType2D.Static;
         Respawn();
