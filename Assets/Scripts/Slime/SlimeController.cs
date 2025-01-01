@@ -69,6 +69,13 @@ public class SlimeController : MonoBehaviour
         dashingTime = 0.4f;
         dashingCoolDown = 0.5f;
         canDash = true;
+
+        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
+        {
+            float x = PlayerPrefs.GetFloat("RespawnX");
+            float y = PlayerPrefs.GetFloat("RespawnY");
+            transform.position = new Vector3(x, y, transform.position.z);
+        }
     }
 
     void Update()
@@ -198,9 +205,12 @@ public class SlimeController : MonoBehaviour
     }
     private void Respawn()
     {
+        // 保存重生点位置
+        PlayerPrefs.SetFloat("RespawnX", respawnPoint.position.x);
+        PlayerPrefs.SetFloat("RespawnY", respawnPoint.position.y);
+        PlayerPrefs.Save();
         playerRB.bodyType = RigidbodyType2D.Static;
         playerAnim.SetTrigger("death");
-        // 延迟一段时间以确保重生动画播放完毕
         StartCoroutine(DelayedRespawn());
     }
     private IEnumerator DelayedRespawn()
@@ -210,10 +220,17 @@ public class SlimeController : MonoBehaviour
         transform.position = respawnPoint.position;
         RestartLevel();
         // 重置玩家状态
+        playerRB.bodyType = RigidbodyType2D.Dynamic;
         playerAnim.ResetTrigger("death");
         // 重新设置Cinemachine摄像头的Follow和LookAt
-        vcam.LookAt = transform;
         vcam.Follow = transform;
+    }
+    public void SetRespawnPoint(Vector3 position)
+    {
+        if (respawnPoint != null)
+        {
+            respawnPoint.position = position;
+        }
     }
 
     private void RestartLevel()
