@@ -10,6 +10,9 @@ public class platformMove : MonoBehaviour
     public Vector3 StartPoi;//起始位置
     public Vector3 EndPoi;//需要移动目标位置
     private bool IsStoE = true;//是否是起始点到终止点的状态
+
+    private Transform playerTransform;
+    public Transform platformParent;
     platformMove(Vector3 EndPoi)//构造函数，赋值终点
     {
         this.EndPoi = EndPoi;
@@ -57,5 +60,24 @@ public class platformMove : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Slime")
+        {
+            // 将角色设置为中间父对象的子对象
+            playerTransform = collision.transform;
+            playerTransform.SetParent(platformParent);
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Slime")
+        {
+            // 取消角色与中间父对象的父子关系
+            playerTransform.SetParent(null);
+            // 清空引用
+            playerTransform = null;
+        }
+    }
 }

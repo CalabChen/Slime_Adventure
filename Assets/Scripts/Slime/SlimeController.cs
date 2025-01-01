@@ -22,14 +22,15 @@ public class SlimeController : MonoBehaviour
     public bool pressedJump;     // 是否按下跳跃键
     public bool canDash;
     public bool isDashing;
-    
+
 
     [Header("组件")]
     public Transform foot;       // 用于检测地面的脚部位置
     public LayerMask groundLayer;// 地面图层遮罩
     public Rigidbody2D playerRB; // 玩家刚体组件
     public Collider2D playerColl;// 玩家碰撞器组件
-    public Animator playerAnim;  // 玩家动画控制器
+    public Animator playerAnim;// 玩家动画控制器
+    private SpriteRenderer spriteRenderer;
     public CinemachineVirtualCamera vcam;
     public TrailRenderer playerTr;
     public AudioSource jumpSoundEffect;
@@ -46,7 +47,6 @@ public class SlimeController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this; // 在Awake时设置实例
-            //DontDestroyOnLoad(gameObject); // 防止玩家实例在加载新场景时被销毁
         }
         else if (Instance != this)
         {
@@ -56,10 +56,17 @@ public class SlimeController : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
+        {
+            float x = PlayerPrefs.GetFloat("RespawnX");
+            float y = PlayerPrefs.GetFloat("RespawnY");
+            transform.position = new Vector3(x, y, transform.position.z);
+        }
         playerRB = GetComponent<Rigidbody2D>();
         playerColl = GetComponent<Collider2D>();
         playerAnim = GetComponent<Animator>();
         playerTr = GetComponent<TrailRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         // 默认速度设置
         playerMoveSpeed = 5f;
@@ -69,33 +76,25 @@ public class SlimeController : MonoBehaviour
         dashingTime = 0.4f;
         dashingCoolDown = 0.5f;
         canDash = true;
-
-        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
-        {
-            float x = PlayerPrefs.GetFloat("RespawnX");
-            float y = PlayerPrefs.GetFloat("RespawnY");
-            transform.position = new Vector3(x, y, transform.position.z);
-        }
     }
 
     void Update()
     {
-        horizontal= Input.GetAxisRaw("Horizontal");
-        if (isDashing)
-        {
-            return;
-        }
+            horizontal = Input.GetAxisRaw("Horizontal");
+            if (isDashing)
+            {
+                return;
+            }
 
-        UpdateCheck(); // 更新按键检测
-        AnimSwitch();  // 切换动画状态        
+            UpdateCheck(); // 更新按键检测
+            AnimSwitch();  // 切换动画状态        
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            dashSoundEffect.Play();
-            StartCoroutine(Dash());
-        }
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                dashSoundEffect.Play();
+                StartCoroutine(Dash());
+            }
     }
-
     private void FixedUpdate()
     {
         if (isDashing)
@@ -118,11 +117,11 @@ public class SlimeController : MonoBehaviour
 
         // 将移动值传递给动画控制器
         playerAnim.SetFloat("move", Mathf.Abs(playerMoveSpeed * horizontalInput));
-
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (faceDirection != 0)
-        {
+        {spriteRenderer.flipX = (faceDirection < 0);
             // 根据移动方向翻转角色
-            transform.localScale = new Vector3(faceDirection * 6f, transform.localScale.y, transform.localScale.z);
+            // transform.localScale = new Vector3(faceDirection * 6f, transform.localScale.y, transform.localScale.z);
         }
     }
 
@@ -179,7 +178,7 @@ public class SlimeController : MonoBehaviour
         isDashing = true;
         float originalGravity = playerRB.gravityScale;
         playerRB.gravityScale = 0f;
-        float dashDirection = Mathf.Sign(transform.localScale.x);
+        int dashDirection = spriteRenderer.flipX ? -1 : 1;
         playerRB.velocity = new Vector2(dashDirection * dashingPower, 0f);
         playerTr.emitting = true;
         yield return new WaitForSeconds(dashingTime);

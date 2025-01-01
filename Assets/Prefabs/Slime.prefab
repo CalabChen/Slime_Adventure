@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 1042536190024690461}
   - component: {fileID: 5558626358572865178}
   - component: {fileID: 6176090885913745816}
-  - component: {fileID: 6308388833081656661}
   - component: {fileID: 1630113261801619021}
   - component: {fileID: 8206752012512131901}
   - component: {fileID: 1002149844162194143}
   - component: {fileID: 1287986011177582950}
+  - component: {fileID: -2501359204250571511}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -118,41 +118,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &6308388833081656661
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012348279347373499}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.19, y: 0.15}
-  m_Direction: 0
 --- !u!96 &1630113261801619021
 TrailRenderer:
   serializedVersion: 3
@@ -315,9 +280,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerRB: {fileID: 6176090885913745816}
-  playerColl: {fileID: 6308388833081656661}
+  playerColl: {fileID: 0}
   playerAnim: {fileID: 8206752012512131901}
+  vcam: {fileID: 0}
   playerTr: {fileID: 1630113261801619021}
+  jumpSoundEffect: {fileID: 0}
+  dashSoundEffect: {fileID: 0}
+  deathSoundEffect: {fileID: 0}
+  respawnPoint: {fileID: 0}
 --- !u!114 &1287986011177582950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +300,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e051473cd5f5d4eaa33b9a5b526824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSoundEffect: {fileID: 0}
   CherryText: {fileID: 0}
+--- !u!61 &-2501359204250571511
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012348279347373499}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.19, y: 0.15}
+    newSize: {x: 0.19, y: 0.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.19, y: 0.15}
+  m_EdgeRadius: 0
 --- !u!1 &3495119813994855150
 GameObject:
   m_ObjectHideFlags: 0
