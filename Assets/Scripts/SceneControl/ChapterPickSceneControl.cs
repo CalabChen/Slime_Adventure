@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static AllControl;
 
 public class ChapterPickSceneControl : MonoBehaviour
 {
@@ -13,10 +15,12 @@ public class ChapterPickSceneControl : MonoBehaviour
         { "Chapter3", "Chapter3Scene" }
         // 可以在这里添加更多的章节
     };
+    public Text CherriesTXT;
 
     // Start is called before the first frame update
     void Start()
     {
+        CherriesTXT.text = GameManager.Instance.cherries + "/6";
     }
 
     // Update is called once per frame

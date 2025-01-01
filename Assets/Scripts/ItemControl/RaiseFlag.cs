@@ -16,13 +16,6 @@ public class RaiseFlag : MonoBehaviour
         if (Vector3.Distance(flag.position, SlimeController.Instance.transform.position) < triggerDistance)
         {
             flagAnimator.SetTrigger("Raise");
-            UpdateRespawnPoint(); // 更新重生点
         }
-    }
-
-    // 调用此方法来更新重生点位置
-    public void UpdateRespawnPoint()
-    {
-        SlimeController.Instance.SetRespawnPoint(flag.position); // 使用公共方法更新重生点
     }
 }

@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,12 +57,6 @@ public class SlimeController : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.HasKey("RespawnX") && PlayerPrefs.HasKey("RespawnY"))
-        {
-            float x = PlayerPrefs.GetFloat("RespawnX");
-            float y = PlayerPrefs.GetFloat("RespawnY");
-            transform.position = new Vector3(x, y, transform.position.z);
-        }
         playerRB = GetComponent<Rigidbody2D>();
         playerColl = GetComponent<Collider2D>();
         playerAnim = GetComponent<Animator>();
@@ -191,45 +186,35 @@ public class SlimeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap"))
+        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("DeathFall"))
         {
             deathSoundEffect.Play();
-            Respawn();
+            Die();
         }
-        if (collision.gameObject.CompareTag("DeathFall"))
-        {
-            deathSoundEffect.Play();
-            Respawn();
-        } 
     }
+
+    private void Die()
+    {
+        playerAnim.SetTrigger("death");
+        playerRB.bodyType = RigidbodyType2D.Static;
+        Respawn();
+    }
+
     private void Respawn()
     {
-        // 保存重生点位置
-        PlayerPrefs.SetFloat("RespawnX", respawnPoint.position.x);
-        PlayerPrefs.SetFloat("RespawnY", respawnPoint.position.y);
-        PlayerPrefs.Save();
-        playerRB.bodyType = RigidbodyType2D.Static;
-        playerAnim.SetTrigger("death");
         StartCoroutine(DelayedRespawn());
     }
     private IEnumerator DelayedRespawn()
     {
         // 等待死亡动画完成
         yield return new WaitForSeconds(playerAnim.GetCurrentAnimatorStateInfo(0).length);
+        // 重置玩家状态
+        playerAnim.ResetTrigger("death");
+        playerRB.bodyType = RigidbodyType2D.Dynamic;
         transform.position = respawnPoint.position;
         RestartLevel();
-        // 重置玩家状态
-        playerRB.bodyType = RigidbodyType2D.Dynamic;
-        playerAnim.ResetTrigger("death");
         // 重新设置Cinemachine摄像头的Follow和LookAt
         vcam.Follow = transform;
-    }
-    public void SetRespawnPoint(Vector3 position)
-    {
-        if (respawnPoint != null)
-        {
-            respawnPoint.position = position;
-        }
     }
 
     private void RestartLevel()
