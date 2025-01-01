@@ -25,6 +25,11 @@ public class SlimeLife : MonoBehaviour
             deathSoundEffect.Play();
             Die();
         }
+        if (collision.gameObject.CompareTag("DeathFall"))
+        {
+            deathSoundEffect.Play();
+            Die();
+        }
     }
 
     private void Die()
