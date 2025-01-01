@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platformMove : MonoBehaviour
+public class SawMove : MonoBehaviour
 {
     public float waitTime = 0.5f;//定值等待时间
     private float _waitTime;//等待时间
@@ -12,7 +12,7 @@ public class platformMove : MonoBehaviour
     private bool IsStoE = true;//是否是起始点到终止点的状态
 
     private Transform playerTransform;
-    platformMove(Vector3 EndPoi)//构造函数，赋值终点
+    void platformMove(Vector3 EndPoi)//构造函数，赋值终点
     {
         this.EndPoi = EndPoi;
     }
@@ -57,24 +57,6 @@ public class platformMove : MonoBehaviour
 
 
             }
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 将角色设置为中间父对象的子对象
-            playerTransform = collision.transform;
-            playerTransform.SetParent(transform);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 取消角色与中间父对象的父子关系
-            playerTransform.SetParent(null);
         }
     }
 }
