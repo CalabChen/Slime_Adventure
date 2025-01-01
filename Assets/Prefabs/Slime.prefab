@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8206752012512131901}
   - component: {fileID: 1002149844162194143}
   - component: {fileID: 1287986011177582950}
-  - component: {fileID: -2501359204250571511}
+  - component: {fileID: -8266278925765821718}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c2c49e7f2868a344d9e98ce11515931d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectSoundEffect: {fileID: 0}
   CherryText: {fileID: 0}
---- !u!61 &-2501359204250571511
-BoxCollider2D:
+--- !u!70 &-8266278925765821718
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -335,18 +335,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.19, y: 0.15}
-    newSize: {x: 0.19, y: 0.15}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.19, y: 0.15}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!1 &3495119813994855150
 GameObject:
   m_ObjectHideFlags: 0
