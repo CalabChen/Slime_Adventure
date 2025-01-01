@@ -8,6 +8,7 @@ public class SlimeLife : MonoBehaviour
     [Header("组件")]
     public Rigidbody2D playerRB; // 玩家刚体组件
     public Animator playerAnim;  // 玩家动画控制器
+    public AudioSource deathSoundEffect;
    
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class SlimeLife : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Trap"))
         {
+            deathSoundEffect.Play();
             Die();
         }
     }

@@ -28,7 +28,9 @@ public class SlimeController : MonoBehaviour
     public Rigidbody2D playerRB; // 玩家刚体组件
     public Collider2D playerColl;// 玩家碰撞器组件
     public Animator playerAnim;  // 玩家动画控制器
-    [SerializeField] TrailRenderer playerTr;
+    public TrailRenderer playerTr;
+    public AudioSource jumpSoundEffect;
+    public AudioSource dashSoundEffect;
 
 
     void Start()
@@ -36,6 +38,8 @@ public class SlimeController : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         playerColl = GetComponent<Collider2D>();
         playerAnim = GetComponent<Animator>();
+        playerTr = GetComponent<TrailRenderer>();
+
         // 默认速度设置
         playerMoveSpeed = 5f;
         playerJumpSpeed = 15f;
@@ -59,6 +63,7 @@ public class SlimeController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
+            dashSoundEffect.Play();
             StartCoroutine(Dash());
         }
     }
@@ -128,6 +133,7 @@ public class SlimeController : MonoBehaviour
         // 当按下跳跃键时设置跳跃标志
         if (Input.GetButtonDown("Jump"))
         {
+            jumpSoundEffect.Play();
             pressedJump = true;
         }
     }
