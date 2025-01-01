@@ -198,6 +198,7 @@ public class SlimeController : MonoBehaviour
     }
     private void Respawn()
     {
+        playerRB.bodyType = RigidbodyType2D.Static;
         playerAnim.SetTrigger("death");
         // 延迟一段时间以确保重生动画播放完毕
         StartCoroutine(DelayedRespawn());
