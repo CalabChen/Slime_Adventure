@@ -17,6 +17,10 @@ public class NPCSlimeDefault : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dialogBox = GameObject.Find("DialogBox");
+        tipBox = GameObject.Find("TipBox");
+        dialogBoxText = dialogBox.GetComponentInChildren<Text>();
+        tipBoxText = tipBox.GetComponentInChildren<Text>();
         dialogBox.SetActive(false); // 初始化时隐藏对话框
         tipBox.SetActive(false); // 初始化时隐藏对话框
     }
