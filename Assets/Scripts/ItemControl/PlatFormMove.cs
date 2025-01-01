@@ -12,7 +12,6 @@ public class platformMove : MonoBehaviour
     private bool IsStoE = true;//是否是起始点到终止点的状态
 
     private Transform playerTransform;
-    public Transform platformParent;
     platformMove(Vector3 EndPoi)//构造函数，赋值终点
     {
         this.EndPoi = EndPoi;
@@ -66,7 +65,7 @@ public class platformMove : MonoBehaviour
         {
             // 将角色设置为中间父对象的子对象
             playerTransform = collision.transform;
-            playerTransform.SetParent(platformParent);
+            playerTransform.SetParent(transform);
         }
     }
 
@@ -76,8 +75,6 @@ public class platformMove : MonoBehaviour
         {
             // 取消角色与中间父对象的父子关系
             playerTransform.SetParent(null);
-            // 清空引用
-            playerTransform = null;
         }
     }
 }
