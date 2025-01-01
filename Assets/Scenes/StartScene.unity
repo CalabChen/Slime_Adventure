@@ -285,8 +285,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1658812822}
-        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: StartSceneControl, Assembly-CSharp
         m_MethodName: GotoStagePickScene
         m_Mode: 1
         m_Arguments:
@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -511,6 +512,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eca716a182035546a69365da45632e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 677430387}
 --- !u!1 &628052537
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,8 +608,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1658812822}
-        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: StartSceneControl, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -727,8 +741,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1658812822}
-        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: StartSceneControl, Assembly-CSharp
         m_MethodName: GotoSettingScene
         m_Mode: 1
         m_Arguments:
@@ -786,10 +800,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 677430389}
-  - component: {fileID: 677430388}
   - component: {fileID: 677430387}
   m_Layer: 0
-  m_Name: BackgroundMusic
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -805,11 +818,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 004bf8bc762298a4fbc9ad7551683e11, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -891,19 +904,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &677430388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677430386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405739e070c1bf24194bf976ce02241a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusicClip: {fileID: 8300000, guid: 004bf8bc762298a4fbc9ad7551683e11, type: 3}
 --- !u!4 &677430389
 Transform:
   m_ObjectHideFlags: 0
@@ -1391,8 +1391,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1658812822}
-        m_TargetAssemblyTypeName: StartScene, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: StartSceneControl, Assembly-CSharp
         m_MethodName: GotoDeveloperScene
         m_Mode: 1
         m_Arguments:
@@ -1599,50 +1599,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482064858}
   m_CullTransparentMesh: 1
---- !u!1 &1658812821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1658812823}
-  - component: {fileID: 1658812822}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1658812822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658812821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eca716a182035546a69365da45632e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1658812823
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658812821}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34460938, y: 0.9527426, z: 1417.0199}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1927965104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,7 +1682,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1658812822}
+      - m_Target: {fileID: 519420033}
         m_TargetAssemblyTypeName: StartSceneControl, Assembly-CSharp
         m_MethodName: GotoTestScene
         m_Mode: 1
@@ -1890,7 +1846,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 677430389}
   - {fileID: 1987931859}
   - {fileID: 1348075326}
-  - {fileID: 1658812823}
-  - {fileID: 677430389}

@@ -44,7 +44,7 @@ public class SlimeController : MonoBehaviour
         playerMoveSpeed = 5f;
         playerJumpSpeed = 15f;
 
-        dashingPower = 24f;
+        dashingPower = 15f;
         dashingTime = 0.4f;
         dashingCoolDown = 0.5f;
         canDash = true;

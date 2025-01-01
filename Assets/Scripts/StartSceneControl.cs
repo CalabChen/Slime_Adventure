@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneControl : MonoBehaviour
 {
+    public AudioSource music;
 
     // 跳转到关卡选择界面
     public void GotoStagePickScene()
