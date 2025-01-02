@@ -1393,7 +1393,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116123190}
   m_CullTransparentMesh: 1
-<<<<<<< Updated upstream
 --- !u!1001 &147381400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1451,8 +1450,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 695f7059ba4c4df46abf809b884f3a9e, type: 3}
-=======
->>>>>>> Stashed changes
 --- !u!1 &153679298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9243,21 +9240,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-<<<<<<< Updated upstream
-=======
---- !u!114 &987794347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987794335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 215d307c21b13ca47bd9405a9a06f686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> Stashed changes
 --- !u!1 &989524398
 GameObject:
   m_ObjectHideFlags: 0
@@ -15930,11 +15912,7 @@ SceneRoots:
   - {fileID: 467843825}
   - {fileID: 1967480038}
   - {fileID: 548510737}
-<<<<<<< Updated upstream
   - {fileID: 1250107919}
   - {fileID: 2030207265}
   - {fileID: 1319192193}
   - {fileID: 147381400}
-=======
-  - {fileID: 692808515}
->>>>>>> Stashed changes
