@@ -273,39 +273,38 @@ public class SlimeController : MonoBehaviour
         playerAnim.SetTrigger("rebirth");
         playerRB.bodyType = RigidbodyType2D.Dynamic;
 
-        // 将玩家移动到重生点
-        if(currentHealth == 0)
+        // 根据当前生命值设置生命值图片的激活状态
+        if (currentHealth == 3)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            FirstHeart.gameObject.SetActive(true);
+            SecondHeart.gameObject.SetActive(true);
+            LastHeart.gameObject.SetActive(true);
         }
-        else
+        else if (currentHealth == 2)
         {
-            transform.position = lastReachedRespawnPoint.position;
+            FirstHeart.gameObject.SetActive(false);
+            SecondHeart.gameObject.SetActive(true);
+            LastHeart.gameObject.SetActive(true);
+        }
+        else if (currentHealth == 1)
+        {
+            FirstHeart.gameObject.SetActive(false);
+            SecondHeart.gameObject.SetActive(false);
+            LastHeart.gameObject.SetActive(true);
+        }
+        else if (currentHealth < 1)
+        {
+            FirstHeart.gameObject.SetActive(false);
+            SecondHeart.gameObject.SetActive(false);
+            LastHeart.gameObject.SetActive(false);
+            // 如果生命值小于1，重新加载场景
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            yield break; // 直接结束协程，避免执行后续代码
         }
 
-        switch (currentHealth)
-        {
-            case 2:
-            {
-                FirstHeart.enabled = false;
-                transform.position = lastReachedRespawnPoint.position;
-                break;
-            }
-            case 1:
-            {
-                SecondHeart.enabled = false;
-                transform.position = lastReachedRespawnPoint.position;
-                break;
-            }
-            case 0:
-            {
-                LastHeart.enabled = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                break;
-            }
-            default:
-                break;
-        }
+        // 如果生命值大于等于1，将玩家移动到重生点
+        transform.position = lastReachedRespawnPoint.position;
+
         // 重新设置Cinemachine摄像头的Follow和LookAt
         if (vcam != null)
         {
