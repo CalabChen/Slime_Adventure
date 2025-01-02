@@ -15,11 +15,13 @@ public class ChapterPickSceneControl : MonoBehaviour
         // 可以在这里添加更多的章节
     };
     public Text CherriesTXT;
+    public Text BananaTXT;
 
     // Start is called before the first frame update
     void Start()
     {
         CherriesTXT.text = PlayerPrefs.GetInt("MaxCherries", 0) + "/6";
+        BananaTXT.text = PlayerPrefs.GetInt("MaxBananas", 0) + "/4";
     }
 
     // Update is called once per frame
