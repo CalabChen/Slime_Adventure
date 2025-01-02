@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-    private int cherryCount = 0;
-    private int atlasCount = 0;
-    private int bananaCount = 0;
     [Header("×é¼þ")]
     public AudioSource collectSoundEffect;
+
+    private int cherryCount = 0;
     public Text CherryText;
+
+    private int atlasCount = 0;
     public Text AtlasText;
+
+    private int bananaCount = 0;
     public Text BananaText;
+
+    private int appleCount = 0;
+    public Text AppleText;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,6 +66,21 @@ public class ItemCollector : MonoBehaviour
             if (max_c < bananaCount)
             {
                 PlayerPrefs.SetInt("MaxBananas", bananaCount);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Apple"))
+        {
+            collectSoundEffect.Play();
+            Destroy(collision.gameObject);
+            appleCount++;
+            if (AppleText != null)
+            {
+                AppleText.text = "Bananas:" + appleCount;
+            }
+            int max_c = PlayerPrefs.GetInt("MaxApples", 0);
+            if (max_c < appleCount)
+            {
+                PlayerPrefs.SetInt("MaxApples", appleCount);
             }
         }
     }

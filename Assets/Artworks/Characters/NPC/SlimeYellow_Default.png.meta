@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,301 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SlimeYellow_Default_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 574
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ec455f1953eef349a8553154faddb11
+      internalID: 1542010435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 530
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cdffca155a86b84396ee4c864a6e754
+      internalID: 1582905005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_2
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 486
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf2e869530f52843b40fcdbbb5da4bc
+      internalID: -949282716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 442
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70dddccfdb8a2d84197454c388a13870
+      internalID: -1826656069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 398
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce1998f6da26cd46bb9464fdf3b185d
+      internalID: -765317888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_5
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 354
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a27d4aed0f3558a4eb7d96054c56e3cf
+      internalID: -1231083584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 310
+        width: 42
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc50a7232bf26764badb4b2ae38b74f7
+      internalID: 753891866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_7
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 266
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6fcf5823780a3d439967caf75ece195
+      internalID: 1718146247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 222
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09471af141288e24bba071bb66302a7b
+      internalID: -1914352027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 178
+        width: 40
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dba0086f44f01f4db2452032a230e0e
+      internalID: -1821888701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_10
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 134
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333c901738b6c2e4cb786d3af804e406
+      internalID: 860707671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 90
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb6a4974b35c92429fb293afa307f41
+      internalID: 2063958186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 46
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f568876a27f0c44b2cebfb4da8f0bb
+      internalID: 829052584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlimeYellow_Default_13
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 40
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04ff02980660e5646bd10364f6548b2c
+      internalID: 214174577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +413,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SlimeYellow_Default_0: 1542010435
+      SlimeYellow_Default_1: 1582905005
+      SlimeYellow_Default_10: 860707671
+      SlimeYellow_Default_11: 2063958186
+      SlimeYellow_Default_12: 829052584
+      SlimeYellow_Default_13: 214174577
+      SlimeYellow_Default_2: -949282716
+      SlimeYellow_Default_3: -1826656069
+      SlimeYellow_Default_4: -765317888
+      SlimeYellow_Default_5: -1231083584
+      SlimeYellow_Default_6: 753891866
+      SlimeYellow_Default_7: 1718146247
+      SlimeYellow_Default_8: -1914352027
+      SlimeYellow_Default_9: -1821888701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

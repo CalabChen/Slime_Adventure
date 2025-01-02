@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NPCSlimeBlue : MonoBehaviour
+public class NPCSlime : MonoBehaviour
 {
     public GameObject dialogBox; // 对话框对象
     public Text dialogBoxText;   // 对话框文本组件
