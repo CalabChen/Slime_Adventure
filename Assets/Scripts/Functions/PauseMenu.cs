@@ -59,6 +59,18 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void RestartSnow()
+    {
+        SceneManager.LoadScene("SnowScene");
+        Time.timeScale = 1;
+    }
+
+    public void RestartDesert()
+    {
+        SceneManager.LoadScene("DesertScene");
+        Time.timeScale = 1;
+    }
+
     public void ReturnStartScene()
     {
         SceneManager.LoadScene("StartScene");

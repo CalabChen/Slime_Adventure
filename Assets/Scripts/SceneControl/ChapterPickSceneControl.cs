@@ -10,8 +10,8 @@ public class ChapterPickSceneControl : MonoBehaviour
     private Dictionary<string, string> chapterScenes = new Dictionary<string, string>
     {
         { "Chapter1", "ForestScene" },
-        { "Chapter2", "Chapter2Scene" },
-        { "Chapter3", "Chapter3Scene" }
+        { "Chapter2", "SnowScene" },
+        { "Chapter3", "DesertScene" }
         // 可以在这里添加更多的章节
     };
     public Text CherriesTXT;
