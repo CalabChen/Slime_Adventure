@@ -201,7 +201,6 @@ public class SlimeController : MonoBehaviour
     }
 
     void AnimSwitch()
-
     {
         if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("SlimeDie"))
         {
@@ -231,12 +230,21 @@ public class SlimeController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap")
-            || collision.gameObject.CompareTag("Enemy")
+            || collision.gameObject.CompareTag("DeathFall"))// 只有在非无敌状态下才会受到伤害
+        {// 启动无敌帧
+            Die();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap")
             || collision.gameObject.CompareTag("DeathFall"))
         {
             Die();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         for (int i = 0; i < respawnPoints.Length; i++)

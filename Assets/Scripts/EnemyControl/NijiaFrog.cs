@@ -77,6 +77,9 @@ public class NijiaFrog : MonoBehaviour
                 slimeRB.AddForce(Vector2.up * 12.0f, ForceMode2D.Impulse); // 给一个较大的向上的力
             }
 
+            // 禁用碰撞器，避免 OnCollisionEnter2D 被触发
+            enemyCapColl.enabled = false;
+
             // 触发 NijiaFrog 死亡动画和销毁逻辑
             enemyRunSpeed = 0f;
             enemyAnim.SetTrigger("die");
