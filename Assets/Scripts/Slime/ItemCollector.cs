@@ -7,10 +7,12 @@ public class ItemCollector : MonoBehaviour
 {
     private int cherryCount = 0;
     private int atlasCount = 0;
+    private int bananaCount = 0;
     [Header("×é¼þ")]
     public AudioSource collectSoundEffect;
     public Text CherryText;
     public Text AtlasText;
+    public Text BananaText;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,6 +45,21 @@ public class ItemCollector : MonoBehaviour
             if (max_c < atlasCount)
             {
                 PlayerPrefs.SetInt("MaxAtlas", atlasCount);
+            }
+        }
+        else if (collision.gameObject.CompareTag("Banana"))
+        {
+            collectSoundEffect.Play();
+            Destroy(collision.gameObject);
+            bananaCount++;
+            if (BananaText != null)
+            {
+                BananaText.text = "Bananas:" + bananaCount;
+            }
+            int max_c = PlayerPrefs.GetInt("MaxBananas", 0);
+            if (max_c < bananaCount)
+            {
+                PlayerPrefs.SetInt("MaxBananas", bananaCount);
             }
         }
     }
