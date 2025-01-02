@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 5710003024389240369}
   - component: {fileID: 6006092220458228609}
   m_Layer: 0
-  m_Name: ForestPalette
+  m_Name: EarthPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
