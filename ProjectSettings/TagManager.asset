@@ -9,6 +9,7 @@ TagManager:
   - DeathFall
   - Enemy
   - Bullet
+  - Atlas
   layers:
   - Default
   - TransparentFX
