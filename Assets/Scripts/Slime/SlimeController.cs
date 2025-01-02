@@ -250,7 +250,7 @@ public class SlimeController : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         currentHealth--;
         deathSoundEffect.Play();
