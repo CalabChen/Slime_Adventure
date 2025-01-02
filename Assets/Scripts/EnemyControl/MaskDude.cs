@@ -20,12 +20,14 @@ public class MaskDude : MonoBehaviour
     [Header("组件")]
     public Transform foot;
     public LayerMask groundLayer;
-    public Transform headPoint;
+    public BoxCollider2D headCollider; // 使用 BoxCollider2D 作为 headPoint
     public Transform rightUp;
     public Transform rightDown;
     public Rigidbody2D enemyRB;
     public CapsuleCollider2D enemyCapColl;
     public Animator enemyAnim;
+
+    private bool isDead = false; // 标志变量，避免重复触发死亡逻辑
 
     // Start is called before the first frame update
     void Start()
@@ -69,18 +71,41 @@ public class MaskDude : MonoBehaviour
         CheckForPlayerAndAttack();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // 检测 Slime 是否踩到 headPoint
+        if (other.CompareTag("Player") && !isDead)
+        {
+            // 触发 NijiaFrog 死亡逻辑
+            isDead = true; // 设置标志变量，避免重复触发
+
+            // 给 Slime 一个向上的力，确保它跳起来
+            Rigidbody2D slimeRB = other.GetComponent<Rigidbody2D>();
+            if (slimeRB != null)
+            {
+                slimeRB.velocity = new Vector2(slimeRB.velocity.x, 0); // 重置 y 轴速度
+                slimeRB.AddForce(Vector2.up * 12.0f, ForceMode2D.Impulse); // 给一个较大的向上的力
+            }
+
+            // 禁用碰撞器，避免 OnCollisionEnter2D 被触发
+            //enemyCapColl.enabled = false;
+
+            // 触发 NijiaFrog 死亡动画和销毁逻辑
+            enemyRunSpeed = 0f;
+            enemyAnim.SetTrigger("die");
+            //Destroy(gameObject, 1f);
+            Destroy(gameObject, 0.5f);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !isDead)
         {
-            float height = collision.contacts[0].point.y - headPoint.position.y;
-
-            if (height > 0)
+            SlimeController slime = collision.gameObject.GetComponent<SlimeController>();
+            if (slime != null)
             {
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 8.0f, ForceMode2D.Impulse);
-                enemyRunSpeed = 0f;
-                enemyAnim.SetTrigger("die");
-                Destroy(gameObject, 1f);
+                slime.Die(); // 调用 Die 方法，而不是 Respawn
             }
         }
         else if (collision.gameObject.tag == "Enemy")

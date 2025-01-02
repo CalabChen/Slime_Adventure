@@ -9,18 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/SettingScene.unity
-    guid: 8ecf5f795368010408b08468abff9a6d
-  - enabled: 1
-    path: Assets/Scenes/DeveloperScene.unity
-    guid: 495287cdbad169b4f835d4a4944b1637
+    path: Assets/Scenes/TestScene.unity
+    guid: 185e743377bbde64ca7da870a49fb662
   - enabled: 1
     path: Assets/Scenes/ChapterPickScene.unity
     guid: c6097f4d91cb948438e3a7db8def3752
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 185e743377bbde64ca7da870a49fb662
+    path: Assets/Scenes/DeveloperScene.unity
+    guid: 495287cdbad169b4f835d4a4944b1637
   - enabled: 1
     path: Assets/Scenes/ForestScene.unity
     guid: 2db6cd1b280cbb74bbf5f33b7449dd49
+  - enabled: 1
+    path: Assets/Scenes/SnowScene.unity
+    guid: 93bfe26551fd9b846962e9a75168424d
+  - enabled: 1
+    path: Assets/Scenes/DesertScene.unity
+    guid: 177eeeae76f4f334fa5481b79b26a053
   m_configObjects: {}

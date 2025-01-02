@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -8266278925765821718}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,13 +264,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197c77e91d0eda1498ccadc0e5c08d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeed: 10
+  playerMoveSpeed: 0
   playerJumpSpeed: 0
   dashingPower: 0
   dashingTime: 0
   dashingCoolDown: 0
   horizontal: 0
   playerJumpCount: 0
+  MaxHealth: 3
   isGround: 0
   pressedJump: 0
   canDash: 0
@@ -287,7 +288,6 @@ MonoBehaviour:
   jumpSoundEffect: {fileID: 0}
   dashSoundEffect: {fileID: 0}
   deathSoundEffect: {fileID: 0}
-  respawnPoint: {fileID: 0}
 --- !u!114 &1287986011177582950
 MonoBehaviour:
   m_ObjectHideFlags: 0

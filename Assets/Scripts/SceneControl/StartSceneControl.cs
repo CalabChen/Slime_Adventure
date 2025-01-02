@@ -5,18 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneControl : MonoBehaviour
 {
-    public AudioSource music;
 
     // 跳转到关卡选择界面
     public void GotoStagePickScene()
     {
         SceneManager.LoadScene("ChapterPickScene", LoadSceneMode.Single);
-    }
-
-    // 跳转到设置页面
-    public void GotoSettingScene()
-    {
-        SceneManager.LoadScene("SettingScene", LoadSceneMode.Single);
     }
 
     // 跳转到开发者页面

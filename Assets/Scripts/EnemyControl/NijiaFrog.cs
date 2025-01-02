@@ -78,12 +78,13 @@ public class NijiaFrog : MonoBehaviour
             }
 
             // 禁用碰撞器，避免 OnCollisionEnter2D 被触发
-            enemyCapColl.enabled = false;
+            //enemyCapColl.enabled = false;
 
             // 触发 NijiaFrog 死亡动画和销毁逻辑
             enemyRunSpeed = 0f;
             enemyAnim.SetTrigger("die");
-            Destroy(gameObject, 1f);
+            //Destroy(gameObject, 1f);
+            Destroy(gameObject, 0.5f);
         }
     }
 
@@ -98,6 +99,11 @@ public class NijiaFrog : MonoBehaviour
             {
                 slime.Die(); // 调用 Die 方法，而不是 Respawn
             }
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            // 改变移动方向
+            Flip();
         }
     }
 
