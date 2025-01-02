@@ -599,7 +599,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 445722582}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1855824954}
+        m_TargetAssemblyTypeName: ChapterPickSceneControl, Assembly-CSharp
+        m_MethodName: LoadChapter
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 445722579}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &445722582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,7 +662,7 @@ GameObject:
   - component: {fileID: 492884166}
   - component: {fileID: 492884165}
   m_Layer: 5
-  m_Name: DessertImage
+  m_Name: DesertImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1421,7 +1433,7 @@ GameObject:
   - component: {fileID: 1186743919}
   - component: {fileID: 1186743918}
   m_Layer: 5
-  m_Name: Chpater2
+  m_Name: Chapter2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1490,7 +1502,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1186743919}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1855824954}
+        m_TargetAssemblyTypeName: ChapterPickSceneControl, Assembly-CSharp
+        m_MethodName: LoadChapter
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1186743916}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1186743919
 MonoBehaviour:
   m_ObjectHideFlags: 0

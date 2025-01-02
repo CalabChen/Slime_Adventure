@@ -83,6 +83,11 @@ public class MaskDude : MonoBehaviour
                 Destroy(gameObject, 1f);
             }
         }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            // 改变移动方向
+            Flip();
+        }
     }
 
     void FixedUpdateCheck()
