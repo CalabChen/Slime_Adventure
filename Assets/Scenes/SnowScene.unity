@@ -565,7 +565,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2012760747}
+    m_TransformParent: {fileID: 1160728918}
     m_Modifications:
     - target: {fileID: 554463590243451210, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: m_Name
@@ -578,6 +578,14 @@ PrefabInstance:
     - target: {fileID: 2254170780579771759, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337284209318374217, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -441
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337284209318374217, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -355
       objectReference: {fileID: 0}
     - target: {fileID: 3055658340467442023, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: bgm
@@ -645,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6490923290715013769, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2504
+      value: 1474
       objectReference: {fileID: 0}
     - target: {fileID: 6490923290715013769, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -662,6 +670,10 @@ PrefabInstance:
     - target: {fileID: 6490923290715013769, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046029676194075779, guid: f080285f4e1184b4a9ce1eb96448804a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.78431374
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12145,6 +12157,7 @@ RectTransform:
   - {fileID: 116123191}
   - {fileID: 480028725}
   - {fileID: 84739248}
+  - {fileID: 252590559}
   m_Father: {fileID: 2012760747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12165,7 +12178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.27058825}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14197,7 +14210,6 @@ RectTransform:
   - {fileID: 1506096163}
   - {fileID: 2033323863}
   - {fileID: 1007389901}
-  - {fileID: 252590559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
