@@ -1,9 +1,8 @@
 using Cinemachine;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SlimeController : MonoBehaviour
 {
@@ -18,12 +17,23 @@ public class SlimeController : MonoBehaviour
     [Header("跳跃设置")]
     public int playerJumpCount;   // 玩家可跳跃次数
 
+    [Header("生命值设置")]
+    public int MaxHealth = 3; // 玩家的生命值
+    private int currentHealth;
+    private Image FirstHeart; // 生命值图片
+    private Image SecondHeart;
+    private Image LastHeart;
+
+    [Header("复活设置")]
+    private Transform initialRespawnPoint; // 最初的复活点
+    private Transform[] respawnPoints;// 多个复活点
+    private Transform lastReachedRespawnPoint;// 上一个到达的复活点
+
     [Header("检测变量")]
     public bool isGround;        // 是否着地
     public bool pressedJump;     // 是否按下跳跃键
     public bool canDash;
     public bool isDashing;
-
 
     [Header("组件")]
     public Transform foot;       // 用于检测地面的脚部位置
@@ -32,14 +42,12 @@ public class SlimeController : MonoBehaviour
     public Collider2D playerColl;// 玩家碰撞器组件
     public Animator playerAnim;// 玩家动画控制器
     private SpriteRenderer spriteRenderer;
+    private Transform respawnPoint;
     public CinemachineVirtualCamera vcam;
     public TrailRenderer playerTr;
     public AudioSource jumpSoundEffect;
     public AudioSource dashSoundEffect;
     public AudioSource deathSoundEffect;
-
-    [Header("重生点")]
-    public Transform respawnPoint;
 
     public static SlimeController Instance { get; private set; }
 
@@ -55,6 +63,25 @@ public class SlimeController : MonoBehaviour
         }
     }
 
+    private void InitImage()
+    {
+        GameObject imageObject = GameObject.Find("FirstHeart");
+        if (imageObject != null)
+        {
+            FirstHeart = imageObject.GetComponent<Image>();
+        }
+        imageObject = GameObject.Find("SecondHeart");
+        if (imageObject != null)
+        {
+            SecondHeart = imageObject.GetComponent<Image>();
+        }
+        imageObject = GameObject.Find("LastHeart");
+        if (imageObject != null)
+        {
+            LastHeart = imageObject.GetComponent<Image>();
+        }
+    }
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -62,6 +89,17 @@ public class SlimeController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerTr = GetComponent<TrailRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        InitImage();
+
+        // 初始化重生点
+        initialRespawnPoint = GameObject.Find("InitialRespawnPoint").transform;
+        respawnPoints = new Transform[2];
+        for (int i = 0; i < respawnPoints.Length; i++)
+        {
+            respawnPoints[i] = GameObject.Find("RespawnPoint" + (i + 1)).transform;
+        }
+        lastReachedRespawnPoint = initialRespawnPoint;
 
         // 默认速度设置
         playerMoveSpeed = 5f;
@@ -71,25 +109,28 @@ public class SlimeController : MonoBehaviour
         dashingTime = 0.4f;
         dashingCoolDown = 0.5f;
         canDash = true;
+
+        currentHealth = MaxHealth;
     }
 
     void Update()
     {
-            horizontal = Input.GetAxisRaw("Horizontal");
-            if (isDashing)
-            {
-                return;
-            }
+        horizontal = Input.GetAxisRaw("Horizontal");
+        if (isDashing)
+        {
+            return;
+        }
 
-            UpdateCheck(); // 更新按键检测
-            AnimSwitch();  // 切换动画状态        
+        UpdateCheck(); // 更新按键检测
+        AnimSwitch();  // 切换动画状态        
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
-                dashSoundEffect.Play();
-                StartCoroutine(Dash());
-            }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            dashSoundEffect.Play();
+            StartCoroutine(Dash());
+        }
     }
+
     private void FixedUpdate()
     {
         if (isDashing)
@@ -99,7 +140,6 @@ public class SlimeController : MonoBehaviour
         FixedUpdateCheck(); // 固定更新检测
         PlayerMove();       // 玩家移动逻辑
         PlayerJump();       // 玩家跳跃逻辑
-        
     }
 
     void PlayerMove()
@@ -114,9 +154,8 @@ public class SlimeController : MonoBehaviour
         playerAnim.SetFloat("move", Mathf.Abs(playerMoveSpeed * horizontalInput));
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (faceDirection != 0)
-        {spriteRenderer.flipX = (faceDirection < 0);
-            // 根据移动方向翻转角色
-            // transform.localScale = new Vector3(faceDirection * 6f, transform.localScale.y, transform.localScale.z);
+        {
+            spriteRenderer.flipX = (faceDirection < 0);
         }
     }
 
@@ -162,7 +201,12 @@ public class SlimeController : MonoBehaviour
     }
 
     void AnimSwitch()
+
     {
+        if (playerAnim.GetCurrentAnimatorStateInfo(0).IsName("SlimeDie"))
+        {
+            return;
+        }
         // 根据角色是否跳跃切换动画状态
         playerAnim.SetBool("jump", !isGround && playerRB.velocity.y != 0);
     }
@@ -186,39 +230,86 @@ public class SlimeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("DeathFall"))
+        if (collision.gameObject.CompareTag("Trap")
+            || collision.gameObject.CompareTag("Enemy")
+            || collision.gameObject.CompareTag("DeathFall"))
         {
-            deathSoundEffect.Play();
             Die();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        for (int i = 0; i < respawnPoints.Length; i++)
+        {
+            if (collision.gameObject.transform == respawnPoints[i])
+            {
+                // 更新最后一个到达的复活点
+                lastReachedRespawnPoint = respawnPoints[i];
+                break;
+            }
         }
     }
 
     private void Die()
     {
+        currentHealth--;
+        deathSoundEffect.Play();
         playerAnim.SetTrigger("death");
         playerRB.bodyType = RigidbodyType2D.Static;
-        Respawn();
+        Respawn(); // 调用重生逻辑
     }
 
     private void Respawn()
     {
         StartCoroutine(DelayedRespawn());
     }
+
     private IEnumerator DelayedRespawn()
     {
         // 等待死亡动画完成
         yield return new WaitForSeconds(playerAnim.GetCurrentAnimatorStateInfo(0).length);
-        // 重置玩家状态
-        playerAnim.ResetTrigger("death");
-        playerRB.bodyType = RigidbodyType2D.Dynamic;
-        transform.position = respawnPoint.position;
-        RestartLevel();
-        // 重新设置Cinemachine摄像头的Follow和LookAt
-        vcam.Follow = transform;
-    }
 
-    private void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // 重置玩家状态
+        playerAnim.SetTrigger("rebirth");
+        playerRB.bodyType = RigidbodyType2D.Dynamic;
+
+        // 将玩家移动到重生点
+        if(currentHealth == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            transform.position = lastReachedRespawnPoint.position;
+        }
+
+        switch (currentHealth)
+        {
+            case 2:
+            {
+                FirstHeart.enabled = false;
+                transform.position = lastReachedRespawnPoint.position;
+                break;
+            }
+            case 1:
+            {
+                SecondHeart.enabled = false;
+                transform.position = lastReachedRespawnPoint.position;
+                break;
+            }
+            case 0:
+            {
+                LastHeart.enabled = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
+            }
+            default:
+                break;
+        }
+        // 重新设置Cinemachine摄像头的Follow和LookAt
+        if (vcam != null)
+        {
+            vcam.Follow = transform;
+        }
     }
 }
